@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, Text, StyleSheet, Image, View } from "react-native";
 import { carregaProdutores } from "../../../servicos/CarregaDados";
+import Produtor from "./Produtor";
 
 export default function Produtores({ topo: Topo }) {
     const [titulo, setTitulo] = useState('');
@@ -21,12 +22,9 @@ export default function Produtores({ topo: Topo }) {
 
     return <FlatList
         data={lista}
-        renderItem={({ item: { nome, imagem } }) => <View style={estilos.viewItem}>
-            <Image style={estilos.imgItem} source={imagem} />
-            <Text style={estilos.textItem}>{nome}</Text>
-        </View>}
+        renderItem={({ item }) => <Produtor {...item}/>}
         ListHeaderComponent={TopoLista}
-        keyExtractor={({ nome }) => nome}
+        keyExtractor={({ nome }) => nome} 
     ></FlatList>
 }
 
@@ -43,13 +41,17 @@ const estilos = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginHorizontal: 16,
-        marginVertical: 16
+        marginVertical: 16,
+        backgroundColor: '#dedede',
+        borderRadius: 6,
+        height: 100
     },
     textItem: {
         marginHorizontal: 16
     },
     imgItem: {
-        width: 60,
-        height: 60
+        width: 70,
+        height: 70,
+        marginLeft: 16
     }
 })
