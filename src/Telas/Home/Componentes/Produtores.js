@@ -14,7 +14,7 @@ export default function Produtores({ topo: Topo }) {
     }
 
     return <FlatList
-        data={lista}
+        data={lista.sort()}
         renderItem={({ item }) => <Produtor {...item}/>}
         ListHeaderComponent={TopoLista}
         keyExtractor={({ nome }) => nome} 
